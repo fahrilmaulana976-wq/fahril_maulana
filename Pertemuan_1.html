@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halaman Lucu untuk Arin</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .gif-container {
+            margin: 20px 0;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #arin-button {
+            position: absolute;
+            transition: all 0.1s ease;
+        }
+    </style>
+</head>
+<body>
+    <h1>halooo arindaaaa</h1>
+    
+    <!-- GIF Lucu (menggunakan URL dari Giphy, bisa diganti) -->
+    <div class="gif-container">
+        <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbDVtZHpocTh3bDd3NWN3NmplMTBjcmV1eWg2NjkyemoyY3B0dXUwNyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/BBk5iINrCLYpW/200w.gif" width="20%" height="20%" alt="despicable me linda GIF" style="background: unset;">
+    </div>
+    
+    <!-- Pertanyaan atau teks tentang Arindaaaaa jadi Arin -->
+    <p>kamu pasti tidak bangun shubuh yah 😄</p>
+    
+    <!-- Tombol Arindaaaaa dengan alert -->
+    <button onclick="alert('I <3 U')">MALASSSSSS</button>
+    
+    <!-- Tombol Arin yang kabur saat didekati -->
+    <button id="arin-button">saya bangun loh fahril</button>
+    
+    <script>
+        // JavaScript untuk tombol Arin yang kabur
+        const arinButton = document.getElementById('arin-button');
+        let isRunning = false;
+        
+        document.addEventListener('mousemove', (e) => {
+            if (isRunning) return;
+            
+            const buttonRect = arinButton.getBoundingClientRect();
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+            
+            // Hitung jarak antara mouse dan tombol
+            const distance = Math.sqrt(
+                Math.pow(mouseX - (buttonRect.left + buttonRect.width / 2), 2) +
+                Math.pow(mouseY - (buttonRect.top + buttonRect.height / 2), 2)
+            );
+            
+            // Jika mouse dekat (dalam jarak 100px), gerakkan tombol
+            if (distance < 100) {
+                isRunning = true;
+                
+                // Pindahkan tombol ke posisi acak di layar
+                const newX = Math.random() * (window.innerWidth - buttonRect.width);
+                const newY = Math.random() * (window.innerHeight - buttonRect.height);
+                
+                arinButton.style.left = `${newX}px`;
+                arinButton.style.top = `${newY}px`;
+                
+                // Reset setelah gerakan
+                setTimeout(() => {
+                    isRunning = false;
+                }, 100);
+            }
+        });
+        
+        // Inisialisasi posisi tombol Arin secara acak
+        window.onload = () => {
+            const randomX = Math.random() * (window.innerWidth - 100);
+            const randomY = Math.random() * (window.innerHeight - 50);
+            arinButton.style.position = 'absolute';
+            arinButton.style.left = `${randomX}px`;
+            arinButton.style.top = `${randomY}px`;
+        };
+    </script>
+</body>
+</html>
